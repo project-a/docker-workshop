@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:1.21-alpine
+    container_name: "nginx"
+    volumes:
+      - ./:/bind/:ro
+      - mydata:/vol
+    ports:
+      - "8090:80"
+    env_file:
+      - .env
+    environment:
+      TEST: 'true'
+      
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./../db_scripts/setup.sql:/docker-entrypoint-initdb.d/1_setup.sql:ro
+      - ./../db_scripts/data.sql:/docker-entrypoint-initdb.d/2_pcc_testdata.sql:ro
+
+volumes:
+  mydata:
+  dbdata:

@@ -1,0 +1,7 @@
+docker run -d --rm --name test_mount1 -v ~/mount:/test/mount image_test
+
+docker exec -it test_mount1 bash
+
+touch /test/mount/test.txt
+
+[Do edits on file from outside folder -> are permissions ok?]

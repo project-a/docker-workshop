@@ -1,0 +1,21 @@
+[CLEAN UP ALL IMAGES AND SNAPSHOTS] docker image rm $(docker image ls)
+
+docker build .
+
+docker build . -t=image_test
+
+docker run image_test
+
+docker exec -it {containerId} bash
+
+docker run -p 8080:80 image_test
+
+[Do things inside container ]
+
+docker stop -f {containerId}
+
+[Run again and check that changes were not saved]
+
+[Change index.html file -> chache invalidated]
+
+[Commit changes to container]

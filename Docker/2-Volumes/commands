@@ -1,0 +1,17 @@
+docker volume create my-vol
+
+docker run --rm --name test_vol1 -v my-vol:/test/volume image_test
+
+docker run --rm --name test_vol2 -v my-vol:/test/volume image_test
+
+docker exec -it test_vol1 bash
+
+docker exec -it test_vol2 bash
+
+ls /test/volume
+
+touch /test/volume/shared.txt
+
+apk add openssh
+
+[do edits on file -> changes are on both containers, ssh command is only on 1 container]
