@@ -35,8 +35,6 @@ services:
       - '3306'
     volumes:
       - dbdata:/var/lib/mysql/
-      - ./../db_scripts/setup.sql:/docker-entrypoint-initdb.d/1_setup.sql:ro
-      - ./../db_scripts/data.sql:/docker-entrypoint-initdb.d/2_pcc_testdata.sql:ro
 
 volumes:
   mydata:

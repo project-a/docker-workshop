@@ -16,6 +16,6 @@ docker stop -f {containerId}
 
 [Run again and check that changes were not saved]
 
-[Change index.html file -> chache invalidated]
+[Change index.html file -> cache invalidated]
 
 [Commit changes to container]
